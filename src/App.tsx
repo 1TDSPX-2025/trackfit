@@ -1,7 +1,10 @@
+import { Header } from "./components/header";
+
 function App() {
   return (
-    <>
-      <h1>Projeto</h1>
+    <>      
+     <Header/>
+
     </>
   );
 }
