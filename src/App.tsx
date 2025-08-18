@@ -1,7 +1,14 @@
+import { Header } from "./components/header";
+
 function App() {
   return (
     <>
-      <h1>big foooodase f</h1>
+    
+
+
+
+      
+    <Header/>
     </>
   );
 }
