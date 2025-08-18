@@ -3,9 +3,7 @@
 function App() {
   return (
     <>
-      <h1>Fodade 
 
-      </h1>
     </>
   );
 }
