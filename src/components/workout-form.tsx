@@ -18,11 +18,11 @@ export function WorkoutForm({ onAdd }: WorkoutFormProps) {
 
     const workout: Workout = {
       id: crypto.randomUUID(),
-      title: title,
-      date: date,
-      durationMinutes: durationMinutes,
-      intensity: intensity,
-      notes: notes,
+      title,
+      date,
+      durationMinutes,
+      intensity,
+      notes,
     };
 
     onAdd(workout);
@@ -37,13 +37,7 @@ export function WorkoutForm({ onAdd }: WorkoutFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      action=""
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "80%",
-        gap: "0.5rem",
-      }}
+      className="bg-white shadow rounded-lg p-4 flex flex-col gap-3 w-4/5 mb-5"
     >
       <label htmlFor="workout-title">Título do treino</label>
       <input
@@ -52,6 +46,7 @@ export function WorkoutForm({ onAdd }: WorkoutFormProps) {
         placeholder="Título do treino"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
+        className="border rounded p-2"
       />
 
       <label htmlFor="workout-duration">Duração (min)</label>
@@ -61,6 +56,7 @@ export function WorkoutForm({ onAdd }: WorkoutFormProps) {
         placeholder="Duração (min)"
         onChange={(e) => setDurationMinutes(Number(e.target.value))}
         value={durationMinutes}
+        className="border rounded p-2"
       />
 
       <label htmlFor="workout-intensity">Intensidade</label>
@@ -72,6 +68,7 @@ export function WorkoutForm({ onAdd }: WorkoutFormProps) {
         value={intensity}
         min={1}
         max={5}
+        className="border rounded p-2"
       />
 
       <label htmlFor="workout-date">Dia do treino</label>
@@ -81,6 +78,7 @@ export function WorkoutForm({ onAdd }: WorkoutFormProps) {
         placeholder="Dia de treino"
         onChange={(e) => setDate(e.target.value)}
         value={date}
+        className="border rounded p-2"
       />
 
       <label htmlFor="workout-note">Anotações</label>
@@ -90,9 +88,12 @@ export function WorkoutForm({ onAdd }: WorkoutFormProps) {
         id="workout-note"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
+        className="border rounded p-2"
       />
 
-      <button type="submit">Adicionar treino</button>
+      <button className="btn" type="submit">
+        Adicionar treino
+      </button>
     </form>
   );
 }
