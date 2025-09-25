@@ -1,7 +1,15 @@
-export function Home() {
+import { WorkoutList } from "../components/workout-list";
+import type { Workout } from "../types/workout";
+
+interface HomeProps {
+  workouts: Workout[];
+  removeWorkout: (id: string) => void;
+}
+
+export function Home({ workouts, removeWorkout }: HomeProps) {
   return (
     <>
-      <h2 className="font-bold text-gray-600 text-xl mb-3">Página home</h2>
+      <WorkoutList removeWorkout={removeWorkout} workoutList={workouts} />
     </>
   );
 }

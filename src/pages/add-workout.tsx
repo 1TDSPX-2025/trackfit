@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import { WorkoutForm } from "../components/workout-form";
-import { WorkoutList } from "../components/workout-list";
 import type { Workout } from "../types/workout";
 
-export function AddWorkout() {
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
+interface AddWorkoutProps {
+  workouts: Workout[];
+  onAdd: (workout: Workout) => void;
+}
 
-  function addWorkout(workout: Workout): void {
-    setWorkouts((prev) => [...prev, workout]);
-  }
+export function AddWorkout({ workouts, onAdd }: AddWorkoutProps) {
+  const workoutMinutes = useMemo(() => {
+    let workoutMinutesRealized: number = 0;
+
+    workouts.forEach((value) => {
+      workoutMinutesRealized += value.durationMinutes;
+    });
+
+    const hours = Math.floor(workoutMinutesRealized / 60);
+    const minutes = workoutMinutesRealized % 60;
+
+    return `${hours}:${minutes}`;
+  }, [workouts]);
 
   return (
     <>
@@ -16,8 +27,9 @@ export function AddWorkout() {
         Adicionar novo treino
       </h2>
 
-      <WorkoutForm onAdd={addWorkout} />
-      <WorkoutList workoutList={workouts} />
+      <h3>Tempo de treino: {workoutMinutes}</h3>
+
+      <WorkoutForm onAdd={onAdd} />
     </>
   );
 }
